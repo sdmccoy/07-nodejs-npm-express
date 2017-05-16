@@ -12,9 +12,12 @@ const PORT = process.env.PORT || 3000;
 
 // TODO: Include all of the static resources as an argument to app.use()
 app.use(express.static('./public'));
-app.use(body-parser.static('./public'));
-// TODO: Write a new route that will handle a request and send the new.html file back to the user
 
+// TODO: Write a new route that will handle a request and send the new.html file back to the user
+app.get('/new', function(request, response){
+  console.log('this is working')
+  response.sendFile('public/new.html', {root:'.'});
+})
 
 app.post('/articles', bodyParser, function(request, response) {
   // REVIEW: This route will receive a new article from the form page, new.html,
@@ -26,4 +29,5 @@ app.post('/articles', bodyParser, function(request, response) {
 
 app.listen(PORT, function() {
   // TODO: Log to the console a message that lets you know which port your server has started on
+  console.log('server has started on 3000')
 });
